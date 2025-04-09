@@ -1,0 +1,22 @@
+# Build artifacts
+bin/
+obj/
+.vs/
+
+# User-specific files
+*.user
+*.suo
+
+# Logs
+*.log
+
+# OS-specific
+*.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Others
+*.db
+node_modules/
