@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskBoard.Infrastructure.Data;
 using TaskBoard.Domain.Entities;
@@ -19,8 +19,17 @@ namespace JiraClone.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Tarea>>> GetTareas()
         {
-            return await _context.Tareas.ToListAsync();
+            try
+            {
+                return await _context.Tareas.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("❌ ERROR AL CONSULTAR: " + ex.Message);
+                return StatusCode(500, "Error interno: " + ex.Message);
+            }
         }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Tarea>> GetTarea(int id)
